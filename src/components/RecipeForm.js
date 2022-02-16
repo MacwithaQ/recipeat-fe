@@ -11,17 +11,17 @@ const RecipeForm = ({ recipeFormIsOpen, setRecipeFormIsOpen }) => {
     ingredients: "",
     category: "",
   });
-  const handleChange = (event) => {
-    setNewRecipe({ ...newRecipe, [event.target.name]: event.target.value });
+  const handleChange = (e) => {
+    setNewRecipe({ ...newRecipe, [e.target.name]: e.target.value });
   };
-  const handleImage = (event) => {
-    setNewRecipe({ ...newRecipe, image: event.target.files[0] });
+  const handleImage = (e) => {
+    setNewRecipe({ ...newRecipe, image: e.target.files[0] });
   };
   const handleClose = () => {
     setRecipeFormIsOpen(false);
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     handleClose();
     recipeStore.addRecipe(newRecipe);
   };
