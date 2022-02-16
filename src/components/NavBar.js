@@ -11,13 +11,14 @@ import {
   Image,
 } from "react-bootstrap";
 import frenchFries from "../media/FrenchFries.png";
+import burgerIcon from "../media/BurgerIcon.png";
 
 function NavBar() {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container fluid>
         <Navbar.Brand href="#" className="d-fl">
-          <Image src={frenchFries} style={{ width: 25, marginTop: -7 }} />
+          <Image src={burgerIcon} style={{ width: 60, marginTop: -7 }} />
           <h1>RecipEat</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
