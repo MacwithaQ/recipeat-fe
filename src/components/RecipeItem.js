@@ -1,4 +1,3 @@
-import recipesStore from "../stores/recipesStore";
 import { Card, Button } from "react-bootstrap";
 import { useState } from "react";
 
@@ -13,7 +12,8 @@ const RecipeItem = ({ recipe }) => {
       style={{ width: "18rem" }}
     >
       <Card.Body>
-        <Card.Title>{`${recipe.name}`}</Card.Title>
+        <Card.Title>{recipe.name}</Card.Title>
+        <Card.Text>{recipe.description}</Card.Text>
         <Button onClick={() => setIsOpen(true)} variant="primary">
           View Recipe
         </Button>

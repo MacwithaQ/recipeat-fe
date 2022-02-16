@@ -3,7 +3,7 @@ import { Form, Button, Modal } from "react-bootstrap";
 import { observer } from "mobx-react";
 import recipeStore from "../stores/recipesStore";
 
-const RecipeForm = ({ recipeIsOpen, setRecipeIsOpen }) => {
+const RecipeForm = ({ recipeFormIsOpen, setRecipeFormIsOpen }) => {
   const [newRecipe, setNewRecipe] = useState({
     name: "",
     image: "",
@@ -18,7 +18,7 @@ const RecipeForm = ({ recipeIsOpen, setRecipeIsOpen }) => {
     setNewRecipe({ ...newRecipe, image: event.target.files[0] });
   };
   const handleClose = () => {
-    setRecipeIsOpen(false);
+    setRecipeFormIsOpen(false);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@ const RecipeForm = ({ recipeIsOpen, setRecipeIsOpen }) => {
 
   return (
     <>
-      <Modal show={recipeIsOpen} onHide={() => setRecipeIsOpen(false)}>
+      <Modal show={recipeFormIsOpen} onHide={() => setRecipeFormIsOpen(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Add new recipe</Modal.Title>
         </Modal.Header>
@@ -65,19 +65,24 @@ const RecipeForm = ({ recipeIsOpen, setRecipeIsOpen }) => {
                 name="ingredient"
                 id="ingredientSelect"
               >
-                <option value="silver">bai6'</option>
-                <option value="gold">be6a6</option>
-                <option value="platinum">be9al</option>
-                <option value="Diamond">baq9am</option>
+                <option value="4">bai6'</option>
+                <option value="3">be6a6</option>
+                <option value="2">be9al</option>
+                <option value="1">baq9am</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formMembership">
-              <Form.Label>Available books</Form.Label>
+            <Form.Group className="mb-3" controlId="formIngredient">
+              <Form.Label>category</Form.Label>
               <Form.Select
                 onChange={handleChange}
-                name="available"
-                id="availableBook"
-              ></Form.Select>
+                name="category"
+                id="categorySelect"
+              >
+                <option value="1">hindi'</option>
+                <option value="2">ee 6ali</option>
+                <option value="3">as bani</option>
+                <option value="4">faransi</option>
+              </Form.Select>
             </Form.Group>
           </Form>
         </Modal.Body>

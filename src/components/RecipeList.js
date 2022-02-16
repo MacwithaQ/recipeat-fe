@@ -14,7 +14,10 @@ const RecipeList = () => {
   return (
     <div>
       <Container className="mt-5 " fluid="md">
-        <RecipeForm />
+        <RecipeForm
+          recipeFormIsOpen={recipeFormIsOpen}
+          setRecipeFormIsOpen={setRecipeFormIsOpen}
+        />
         <Button
           onClick={() => {
             setRecipeFormIsOpen(true);
