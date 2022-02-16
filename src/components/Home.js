@@ -1,6 +1,7 @@
 import React from "react";
 import FoodCollage from "../media/FoodCollage.jpeg";
 import FoodCollage2 from "../media/FoodCollage2.jpeg";
+import Image from "react-bootstrap/Image";
 
 function Home() {
   return (
@@ -8,10 +9,11 @@ function Home() {
       <div class="b-example-divider"></div>
       <div className="bg-dark text-secondary px-4 py-5 text-center">
         <div class="px-4 py-5 my-5 text-center">
-          <img
+          <Image
             class="d-block mx-auto mb-4"
             src={FoodCollage2}
             alt=""
+            fluid
             // width="72"
             // height="57"
           />
@@ -37,7 +39,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <div class="b-example-divider"></div>
     </div>
   );
 }
