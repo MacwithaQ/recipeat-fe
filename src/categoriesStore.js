@@ -1,8 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import categories from "./categoriesData";
+import categoriesData from "./categoriesData";
 
 class CategoriesStore {
-  Category = categories;
+  categories = categoriesData;
+
+  createCategory = (category) => {
+    console.log(category);
+    this.categories = [...this.categories, category];
+  };
 
   constructor() {
     makeAutoObservable(this);

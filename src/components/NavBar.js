@@ -15,12 +15,17 @@ import burgerIcon from "../media/BurgerIcon.png";
 
 function NavBar() {
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar>
       <Container fluid>
+        <a class="navbar-brand" href="#">
+          <img src={burgerIcon} width="50" alt="" className="mb-2" />
+        </a>
         <Navbar.Brand href="#" className="d-fl">
-          <Image src={burgerIcon} style={{ width: 60, marginTop: -7 }} />
-          <h1>RecipEat</h1>
+          <div className="d-flex">
+            <h1>RecipEat</h1>
+          </div>
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -29,7 +34,9 @@ function NavBar() {
             navbarScroll
           >
             <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Categories</Nav.Link>
+            <Nav.Link className="link-dark" href="#action2">
+              Categories
+            </Nav.Link>
             <NavDropdown title="Recipes" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -48,7 +55,9 @@ function NavBar() {
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <button type="button" class="btn btn-dark">
+              Search
+            </button>
           </Form>
         </Navbar.Collapse>
       </Container>
