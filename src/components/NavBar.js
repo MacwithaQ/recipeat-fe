@@ -10,17 +10,24 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
-import frenchFries from "../media/FrenchFries.png";
 import burgerIcon from "../media/BurgerIcon.png";
 
-function NavBar() {
+function NavBar({ setQuery }) {
+  const handleQuery = (event) => {
+    setQuery(event.target.value);
+  };
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar>
       <Container fluid>
-        <Navbar.Brand href="#" className="d-fl">
-          <Image src={burgerIcon} style={{ width: 60, marginTop: -7 }} />
-          <h1>RecipEat</h1>
+        <a class="navbar-brand" href="/">
+          <img src={burgerIcon} width="50" alt="" className="mb-2" />
+        </a>
+        <Navbar.Brand className="d-fl" to="/">
+          <div className="d-flex">
+            <h1>RecipEat</h1>
+          </div>
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -28,8 +35,10 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Categories</Nav.Link>
+            <NavLink to="/">Home</NavLink>
+            <NavLink className="link-dark" to="/categories">
+              Categories
+            </NavLink>
             <NavDropdown title="Recipes" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -45,10 +54,14 @@ function NavBar() {
             <FormControl
               type="search"
               placeholder="Search"
+              defaultValue={""}
               className="me-2"
               aria-label="Search"
+              onChange={handleQuery}
             />
-            <Button variant="outline-success">Search</Button>
+            <button type="button" class="btn btn-dark">
+              Search
+            </button>
           </Form>
         </Navbar.Collapse>
       </Container>
