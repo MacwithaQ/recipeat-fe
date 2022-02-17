@@ -20,10 +20,9 @@ class CategoriesStore {
   createCategory = async (category) => {
     try {
       const res = await instance.post("/api/categories", category);
-      console.log(res)
       this.categories = [...this.categories, res.data];
     } catch (error) {
-      console.log(error);
+      console.log("file: categoriesStore.js ~ line 26 ~",error);
     }
   };
 }

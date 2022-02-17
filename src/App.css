@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   width: 100vw;
   min-height: 100vh;
+  height: 200%;
   background-color: #fad961;
   background-image: linear-gradient(90deg, #fad961 0%, #f76b1c 100%);
 }

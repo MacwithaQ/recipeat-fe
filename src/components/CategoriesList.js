@@ -11,6 +11,7 @@ function CategoriesList({ query, setCategory }) {
     description: "",
   });
 
+
   const categoryList = categoriesStore.categories
     .filter((category) =>
       category.name.toLowerCase().includes(query.toLowerCase())
