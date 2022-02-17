@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import CategoriesList from "./components/CategoriesList";
 import { Route, Routes } from "react-router-dom";
+import RecipeList from "./components/RecipeList";
 import { useState } from "react";
 
 function App() {
