@@ -3,10 +3,9 @@ import CategoryItem from "./CategoryItem";
 import categories from ".././stores/categoriesStore";
 import { observer } from "mobx-react";
 
-function CategoriesList({ query }) {
+function CategoriesList({ query, setCategory }) {
   const [create, setCreate] = useState(false);
-  const [type, setType] = useState("");
-  const [category, setCategory] = useState({
+  const [newcategory, setnewCategory] = useState({
     name: "",
     image: "",
     description: "",
@@ -16,15 +15,17 @@ function CategoriesList({ query }) {
     .filter((category) =>
       category.name.toLowerCase().includes(query.toLowerCase())
     )
-    .map((category) => <CategoryItem category={category} />);
+    .map((category) => (
+      <CategoryItem category={category} setCategory={setCategory} />
+    ));
 
   const handleChange = (e) => {
-    setCategory({ ...category, [e.target.name]: e.target.value });
+    setnewCategory({ ...newcategory, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    categories.createCategory(category);
+    categories.createCategory(newcategory);
     setCreate(!create);
   };
 
@@ -35,7 +36,6 @@ function CategoriesList({ query }) {
 
   return (
     <div>
-      <div class="b-example-divider"></div>
       <div className="controls">
         <button type="button" class="btn btn-dark" onClick={handleClick}>
           Create Category
