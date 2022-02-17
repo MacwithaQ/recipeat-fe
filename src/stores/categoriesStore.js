@@ -1,5 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import categoriesData from "../categoriesData";
 import instance from "./instance";
 
 class CategoriesStore {

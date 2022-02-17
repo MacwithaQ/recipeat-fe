@@ -2,13 +2,9 @@ import { NavLink } from "react-router-dom";
 import {
   Nav,
   Navbar,
-  NavDropdown,
   Form,
   FormControl,
-  Button,
   Container,
-  Image,
-  NavLink as NavBootStrap,
 } from "react-bootstrap";
 import burgerIcon from "../media/BurgerIcon.png";
 

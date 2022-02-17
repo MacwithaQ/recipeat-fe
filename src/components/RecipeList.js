@@ -2,7 +2,7 @@ import recipesStore from "../stores/recipesStore";
 import { observer } from "mobx-react";
 import RecipeItem from "./RecipeItem";
 import { useState } from "react";
-import recipes from "../recipeData";
+// import recipes from "../recipeData";
 
 const RecipeList = ({ category }) => {
   const recipe = recipesStore.recipes
@@ -15,15 +15,15 @@ const RecipeList = ({ category }) => {
     category: "",
   });
 
-  const handleChange = (e) => {
-    setCreate({ ...recipes, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setCreate({ ...recipes, [e.target.name]: e.target.value });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    recipes.createRecipe(recipe);
-    setCreate(!create);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   recipes.createRecipe(recipe);
+  //   setCreate(!create);
+  // };
 
   const handleClick = (event) => {
     event.preventDefault();

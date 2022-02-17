@@ -1,6 +1,3 @@
-import { Card, Button } from "react-bootstrap";
-import { useState } from "react";
-
 const RecipeItem = ({ recipe }) => {
 
   return (
