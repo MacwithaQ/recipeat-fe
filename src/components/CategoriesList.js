@@ -3,7 +3,7 @@ import CategoryItem from "./CategoryItem";
 import categories from "../categoriesStore";
 import { observer } from "mobx-react";
 
-function CategoriesList() {
+function CategoriesList({ query }) {
   const [create, setCreate] = useState(false);
   const [type, setType] = useState("");
   const [category, setCategory] = useState({
@@ -12,9 +12,11 @@ function CategoriesList() {
     description: "",
   });
 
-  const categoryList = categories.categories.map((category) => (
-    <CategoryItem category={category} />
-  ));
+  const categoryList = categories.categories
+    .filter((category) =>
+      category.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((category) => <CategoryItem category={category} />);
 
   const handleChange = (e) => {
     setCategory({ ...category, [e.target.name]: e.target.value });

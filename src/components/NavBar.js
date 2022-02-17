@@ -10,17 +10,19 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
-import frenchFries from "../media/FrenchFries.png";
 import burgerIcon from "../media/BurgerIcon.png";
 
-function NavBar() {
+function NavBar({ setQuery }) {
+  const handleQuery = (event) => {
+    setQuery(event.target.value);
+  };
   return (
     <Navbar>
       <Container fluid>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src={burgerIcon} width="50" alt="" className="mb-2" />
         </a>
-        <Navbar.Brand href="#" className="d-fl">
+        <Navbar.Brand className="d-fl" to="/">
           <div className="d-flex">
             <h1>RecipEat</h1>
           </div>
@@ -33,10 +35,10 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link className="link-dark" href="#action2">
+            <NavLink to="/">Home</NavLink>
+            <NavLink className="link-dark" to="/categories">
               Categories
-            </Nav.Link>
+            </NavLink>
             <NavDropdown title="Recipes" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -52,8 +54,10 @@ function NavBar() {
             <FormControl
               type="search"
               placeholder="Search"
+              defaultValue={""}
               className="me-2"
               aria-label="Search"
+              onChange={handleQuery}
             />
             <button type="button" class="btn btn-dark">
               Search
