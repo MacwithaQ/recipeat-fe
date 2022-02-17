@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CategoryItem from "./CategoryItem";
-import categories from ".././stores/categoriesStore";
+import categoriesStore from ".././stores/categoriesStore";
 import { observer } from "mobx-react";
 
 function CategoriesList({ query, setCategory }) {
@@ -11,7 +11,7 @@ function CategoriesList({ query, setCategory }) {
     description: "",
   });
 
-  const categoryList = categories.categories
+  const categoryList = categoriesStore.categories
     .filter((category) =>
       category.name.toLowerCase().includes(query.toLowerCase())
     )
@@ -25,7 +25,7 @@ function CategoriesList({ query, setCategory }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    categories.createCategory(newcategory);
+    categoriesStore.createCategory(category);
     setCreate(!create);
   };
 
