@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CategoryItem from "./CategoryItem";
-import categories from "../categoriesStore";
+import categories from ".././stores/categoriesStore";
 import { observer } from "mobx-react";
 
 function CategoriesList({ query }) {

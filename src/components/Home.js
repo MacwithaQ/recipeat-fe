@@ -1,5 +1,4 @@
 import React from "react";
-import FoodCollage from "../media/FoodCollage.jpeg";
 import FoodCollage2 from "../media/FoodCollage2.jpeg";
 import Image from "react-bootstrap/Image";
 

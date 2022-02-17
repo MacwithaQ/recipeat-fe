@@ -1,7 +1,4 @@
-import categoriesStore from "../categoriesStore";
 import { observer } from "mobx-react";
-import burgerIcon from "../media/BurgerIcon.png";
-import { Image } from "react-bootstrap";
 
 function CategoryItem({ category }) {
   return (

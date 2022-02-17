@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import categoriesData from "./categoriesData";
+import categoriesData from "../categoriesData";
 
 class CategoriesStore {
   categories = categoriesData;
