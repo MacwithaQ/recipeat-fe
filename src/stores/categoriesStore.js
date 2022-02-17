@@ -11,7 +11,7 @@ class CategoriesStore {
 
   fetchCategories = async () => {
     try {
-      const res = await instance.get("/categories");
+      const res = await instance.get("/api/categories");
       this.categories = res.data;
       console.log(this.categories)
     } catch (error) {
