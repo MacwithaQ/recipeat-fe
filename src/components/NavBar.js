@@ -1,4 +1,4 @@
-import { NavLink } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import {
   Nav,
   Navbar,
@@ -8,6 +8,7 @@ import {
   Button,
   Container,
   Image,
+  NavLink as NavBootStrap,
 } from "react-bootstrap";
 import burgerIcon from "../media/BurgerIcon.png";
 
@@ -34,20 +35,21 @@ function NavBar({ setQuery }) {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <NavLink to="/">Home</NavLink>
-            <NavLink className="link-dark" to="/categories">
+            <NavLink className="text-decoration-none text-reset m-2" to="/">
+              Home
+            </NavLink>
+            <NavLink
+              className="link-dark text-decoration-none text-reset m-2"
+              to="/categories"
+            >
               Categories
             </NavLink>
-            <NavDropdown title="Recipes" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
+            <NavLink
+              className="link-dark text-decoration-none text-reset m-2"
+              to="/recipes"
+            >
+              Recipes
+            </NavLink>
           </Nav>
           <Form className="d-flex">
             <FormControl

@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import CategoriesList from "./components/CategoriesList";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import RecipeList from "./components/RecipeList"
 
 function App() {
   const [query, setQuery] = useState("");
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<CategoriesList query={query} />} />
+        <Route path="/recipes" element={<RecipeList/>} />
         <Route path="/:category/recipes" element={<></>} />
         <Route path="/ingredients" element={<></>} />
       </Routes>
