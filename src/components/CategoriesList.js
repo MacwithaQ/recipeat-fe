@@ -25,7 +25,7 @@ function CategoriesList({ query, setCategory }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    categoriesStore.createCategory(category);
+    categoriesStore.createCategory(newcategory);
     setCreate(!create);
   };
 
