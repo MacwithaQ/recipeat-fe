@@ -1,4 +1,11 @@
+import categoriesStore from "../stores/categoriesStore";
+import { observer } from "mobx-react";
+
 const RecipeCreate = () => {
+  const categoryOptions = categoriesStore.categories.map((category) => (
+    <option>{category.name}</option>
+  ));
+
   return (
     <div>
       <div className="createForm p-5 m-5">
@@ -10,7 +17,20 @@ const RecipeCreate = () => {
             placeholder="Enter recipe name"
             aria-label=".form-control-lg example"
           />
+          <label class="form-label m-3">Category</label>
+          <div class="form-group">
+            <select class="form-control" id="exampleFormControlSelect1">
+              {categoryOptions}
+            </select>
+          </div>
           <label class="form-label m-3">Description</label>
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            placeholder="Enter recipe description"
+            aria-label=".form-control-lg example"
+          />
+          <label class="form-label m-3">Image URL</label>
           <input
             class="form-control form-control-lg"
             type="text"
@@ -41,4 +61,4 @@ const RecipeCreate = () => {
   );
 };
 
-export default RecipeCreate;
+export default observer(RecipeCreate);

@@ -22,7 +22,7 @@ class CategoriesStore {
       const res = await instance.post("/api/categories", category);
       this.categories = [...this.categories, res.data];
     } catch (error) {
-      console.log("file: categoriesStore.js ~ line 26 ~",error);
+      console.log("file: categoriesStore.js ~ line 26 ~", error);
     }
   };
 }

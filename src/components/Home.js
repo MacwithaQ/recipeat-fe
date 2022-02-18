@@ -5,7 +5,6 @@ import Image from "react-bootstrap/Image";
 function Home() {
   return (
     <div>
-      <div class="b-example-divider"></div>
       <div className="bg-dark text-secondary px-4 py-5 text-center">
         <div class="px-4 py-5 my-5 text-center">
           <Image

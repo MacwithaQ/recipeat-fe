@@ -9,7 +9,6 @@ import RecipeCreate from "./components/RecipeCreate";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("");
 
   return (
     <div className="App">
@@ -17,11 +16,8 @@ function App() {
       <div class="b-example-divider"></div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/categories"
-          element={<CategoriesList query={query} setCategory={setCategory} />}
-        />
-        <Route path="/recipes" element={<RecipeList category={category} />} />
+        <Route path="/categories" element={<CategoriesList query={query} />} />
+        <Route path="/recipes" element={<RecipeList />} />
         <Route path="/:category/recipes" element={<></>} />
         <Route path="/ingredients" element={<></>} />
         <Route path="/recipecreate" element={<RecipeCreate />} />
