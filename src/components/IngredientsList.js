@@ -4,10 +4,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import IngredientItem from "./IngredientsItem";
 
-const IngredientList = ({}) => {
-  const ingredient = ingredientsStore.ingredients.map((ingredient) => (
-    <IngredientItem key={ingredient.id} ingredient={ingredient} />
-  ));
+const IngredientList = ({ query }) => {
+  const ingredient = ingredientsStore.ingredients
+    .filter((ingredient) =>
+      ingredient.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((ingredient) => (
+      <IngredientItem key={ingredient.id} ingredient={ingredient} />
+    ));
   const [create, setCreate] = useState({
     name: "",
     image: "",
@@ -23,7 +27,7 @@ const IngredientList = ({}) => {
     <div>
       <div className="controls">
         <button type="button" class="btn btn-dark" onClick={handleClick}>
-            Add Ingredient
+          Add Ingredient
         </button>
       </div>
       <ul className="cards">{ingredient}</ul>

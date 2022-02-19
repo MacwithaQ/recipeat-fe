@@ -5,10 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 // import recipes from "../recipeData";
 
-const RecipeList = ({}) => {
-  const recipe = recipesStore.recipes.map((recipe) => (
-    <RecipeItem key={recipe.id} recipe={recipe} />
-  ));
+const RecipeList = ({ query }) => {
   const [create, setCreate] = useState({
     name: "",
     image: "",
@@ -16,6 +13,10 @@ const RecipeList = ({}) => {
     category: "",
   });
 
+  const recipe = recipesStore.recipes
+    .filter((recipe) => recipe.name.toLowerCase().includes(query.toLowerCase()))
+    .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+  
   // const handleChange = (e) => {
   //   setCreate({ ...recipes, [e.target.name]: e.target.value });
   // };
