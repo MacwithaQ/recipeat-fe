@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const RecipeItem = ({ recipe }) => {
 
   return (
     <li>
-      <a href="" class="card">
+      <Link class="card" to="">
         <img src={recipe.image} class="card__image" alt="" />
         <div class="card__overlay">
           <div class="card__header">
@@ -15,7 +17,7 @@ const RecipeItem = ({ recipe }) => {
           </div>
           <p class="card__description">{recipe.description}</p>
         </div>
-      </a>
+      </Link>
     </li>
   );
 };
