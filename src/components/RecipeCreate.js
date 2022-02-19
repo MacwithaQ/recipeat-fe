@@ -14,6 +14,7 @@ const RecipeCreate = () => {
           <input
             class="form-control form-control-lg"
             type="text"
+            name="name"
             placeholder="Enter recipe name"
             aria-label=".form-control-lg example"
           />
@@ -27,6 +28,7 @@ const RecipeCreate = () => {
           <input
             class="form-control form-control-lg"
             type="text"
+            name="description"
             placeholder="Enter recipe description"
             aria-label=".form-control-lg example"
           />
@@ -34,7 +36,8 @@ const RecipeCreate = () => {
           <input
             class="form-control form-control-lg"
             type="text"
-            placeholder="Enter recipe description"
+            name="image"
+            placeholder="Enter image URL"
             aria-label=".form-control-lg example"
           />
           <label class="form-label m-3">Ingredients</label>
