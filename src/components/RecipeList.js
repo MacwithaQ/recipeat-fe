@@ -2,7 +2,7 @@ import recipesStore from "../stores/recipesStore";
 import { observer } from "mobx-react";
 import RecipeItem from "./RecipeItem";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // import recipes from "../recipeData";
 
 const RecipeList = ({ query }) => {
@@ -13,10 +13,13 @@ const RecipeList = ({ query }) => {
     category: "",
   });
 
+  const { categoryId } = useParams();
+
   const recipe = recipesStore.recipes
+    .filter((recipe) => recipe.category === categoryId)
     .filter((recipe) => recipe.name.toLowerCase().includes(query.toLowerCase()))
     .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
-  
+
   // const handleChange = (e) => {
   //   setCreate({ ...recipes, [e.target.name]: e.target.value });
   // };

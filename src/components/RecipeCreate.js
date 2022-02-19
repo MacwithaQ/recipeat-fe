@@ -1,17 +1,18 @@
 import categoriesStore from "../stores/categoriesStore";
 import { observer } from "mobx-react";
 import ingredientsStore from "../stores/ingredientsStore";
-import Select from 'react-select'
+import Select from "react-select";
 
 const RecipeCreate = () => {
   const categoryOptions = categoriesStore.categories.map((category) => (
     <option>{category.name}</option>
-    ));
+  ));
 
-    const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => (
-      {value:ingredient.name, label:ingredient.name}
-    ));
-    
+  const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => ({
+    value: ingredient.name,
+    label: ingredient.name,
+  }));
+
   return (
     <div>
       <div className="createForm p-5 m-5">
@@ -51,18 +52,13 @@ const RecipeCreate = () => {
           />
           <label class="form-label m-3">Ingredient</label>
           <div class="form-group">
-            <Select class="form-control" id="exampleFormControlSelect1" options={ingredientOptions} isMulti/>
+            <Select
+              class="form-control"
+              id="exampleFormControlSelect1"
+              options={ingredientOptions}
+              isMulti
+            />
           </div>
-          <label class="form-label m-3">description</label>
-          <input
-            class="form-control form-control-lg"
-            type="text"
-            name="description"
-            placeholder="Enter recipe description"
-            aria-label=".form-control-lg example"
-            required
-          />
-          {/* use https://react-select.com/home#getting-started */}
           <label class="form-label m-3">Instructions</label>
           <div class="form-group">
             <textarea

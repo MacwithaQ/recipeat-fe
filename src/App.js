@@ -18,9 +18,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<CategoriesList query={query} />} />
-        <Route path="/recipes" element={<RecipeList query={query}/>} />
-        <Route path="/:category/recipes" element={<></>} />
-        <Route path="/ingredients" element={<><IngredientsList query={query}/></>} />
+        <Route path="/recipes" element={<RecipeList query={query} />} />
+        <Route
+          path="/:categoryId/recipes"
+          element={<RecipeList query={query} />}
+        />
+        <Route
+          path="/ingredients"
+          element={
+            <>
+              <IngredientsList query={query} />
+            </>
+          }
+        />
         <Route path="/recipecreate" element={<RecipeCreate />} />
       </Routes>
     </div>

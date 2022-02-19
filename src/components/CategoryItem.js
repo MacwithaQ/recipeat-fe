@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function CategoryItem({ category }) {
   return (
     <li>
-      <Link class="card" to="/recipes">
+      <Link class="card" to={`/${category._id}/recipes`}>
         <img src={category.image} class="card__image" alt="" />
         <div class="card__overlay">
           <div class="card__header">
