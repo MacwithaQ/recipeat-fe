@@ -20,12 +20,16 @@ class RecipesStore {
 
   addRecipe = async (recipe) => {
     try {
-      const res = await instance.post("api/recipes", recipe)
-      this.recipes = [...this.recipes, res.data]
+      console.log(recipe)
+      const res = await instance.post(
+        `api/categories/${recipe.category}/recipes`,
+        recipe
+      );
+      this.recipes = [...this.recipes, res.data];
       // console.log(this.recipes)
-      console.log(res.data)
+      console.log(res.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 }

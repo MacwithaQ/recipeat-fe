@@ -3,8 +3,9 @@ import ingredientsStore from "../stores/ingredientsStore";
 import recipesStore from "../stores/recipesStore";
 import { observer } from "mobx-react";
 import Select from "react-select";
-import makeAnimated from 'react-select/animated'
+import makeAnimated from "react-select/animated";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RecipeCreate = () => {
   const categoryOptions = categoriesStore.categories.map((category) => ({
@@ -21,17 +22,13 @@ const RecipeCreate = () => {
     label: ingredient.name,
   }));
 
-  // const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => (
-  //   <option value={ingredient._id}>{ingredient.name}</option>
-  // ));
-
   const [newRecipe, setNewRecipe] = useState({
     name: "",
     image: "",
     description: "",
-    category:"",
-    ingredients:[],
-    steps:""
+    category: "",
+    ingredients: [],
+    steps: "",
   });
 
   const handleChange = (e) => {
@@ -39,22 +36,24 @@ const RecipeCreate = () => {
   };
 
   const handleSelectCategory = (e) => {
-    setNewRecipe({...newRecipe, category:e.value})
-    console.log(newRecipe)
-  }
+    setNewRecipe({ ...newRecipe, category: e.value });
+    console.log(newRecipe);
+  };
 
-  const handleSelectIngredients = (e) => {
-    setNewRecipe({...newRecipe, ingredients:e.label})
-    console.log(newRecipe)
-  }
+  const handleSelectIngredients = (values) => {
+    const ingredientId = values.map((value) => value.value)
+    setNewRecipe({ ...newRecipe, ingredients: ingredientId });
+    console.log(ingredientId);
+  };
 
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     recipesStore.addRecipe(newRecipe);
+    navigate("/recipes");
   };
 
-
-  const animatedComponents = makeAnimated()
+  const animatedComponents = makeAnimated();
 
   return (
     <div>
@@ -73,12 +72,13 @@ const RecipeCreate = () => {
 
           <label class="form-label m-3">Category</label>
           <div class="form-group">
-            <Select 
-            name="category"
-            onChange={handleSelectCategory}
-            class="form-control" id="exampleFormControlSelect1"
-             options={categoryOptions}
-             components={animatedComponents}
+            <Select
+              name="category"
+              onChange={handleSelectCategory}
+              class="form-control"
+              id="exampleFormControlSelect1"
+              options={categoryOptions}
+              components={animatedComponents}
             />
           </div>
 
