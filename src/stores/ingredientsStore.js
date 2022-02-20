@@ -11,7 +11,6 @@ class IngredientsStore {
   fetchIngredients = async () => {
     try {
       const res = await instance.get("/api/ingredients");
-      console.log(res.data);
       this.ingredients = res.data;
     } catch (error) {
       console.log(error);
@@ -22,6 +21,7 @@ class IngredientsStore {
     try {
       const res = await instance.post("/api/ingredients", ingredient);
       this.ingredients = [...this.ingredients, res.data];
+      console.log(res.data)
     } catch (error) {
       console.log("file: ingredientsStore.js ~ line 26 ~", error);
     }

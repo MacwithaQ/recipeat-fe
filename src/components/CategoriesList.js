@@ -4,6 +4,7 @@ import categoriesStore from ".././stores/categoriesStore";
 import { observer } from "mobx-react";
 
 function CategoriesList({ query }) {
+  
   const [create, setCreate] = useState(false);
   const [newcategory, setnewCategory] = useState({
     name: "",

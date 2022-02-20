@@ -18,8 +18,13 @@ class RecipesStore {
     }
   };
 
-  addRecipe = (recipe) => {
-    this.recipes.push(recipe);
+  addRecipe = async (recipe) => {
+    try {
+      const res = await instance.post("api/recipes", recipe)
+      this.recipes = [...this.recipes, res.data]
+    } catch (error) {
+      console.log(error)
+    }
   };
 }
 

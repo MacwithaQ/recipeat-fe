@@ -2,16 +2,20 @@ import categoriesStore from "../stores/categoriesStore";
 import { observer } from "mobx-react";
 import ingredientsStore from "../stores/ingredientsStore";
 import Select from "react-select";
+import makeAnimated from 'react-select/animated'
 
 const RecipeCreate = () => {
-  const categoryOptions = categoriesStore.categories.map((category) => (
-    <option>{category.name}</option>
-  ));
+  const categoryOptions = categoriesStore.categories.map((category) => ({
+    value: category.name,
+    label: category.name,
+  }));
 
   const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => ({
     value: ingredient.name,
     label: ingredient.name,
   }));
+
+  const animatedComponents = makeAnimated()
 
   return (
     <div>
@@ -28,9 +32,12 @@ const RecipeCreate = () => {
           />
           <label class="form-label m-3">Category</label>
           <div class="form-group">
-            <select class="form-control" id="exampleFormControlSelect1">
-              {categoryOptions}
-            </select>
+            <Select
+             class="form-control" 
+             id="exampleFormControlSelect1"
+             options={categoryOptions}
+             components={animatedComponents}
+            />
           </div>
           <label class="form-label m-3">Description</label>
           <input
@@ -57,6 +64,7 @@ const RecipeCreate = () => {
               id="exampleFormControlSelect1"
               options={ingredientOptions}
               isMulti
+              components={animatedComponents}
             />
           </div>
           <label class="form-label m-3">Instructions</label>
