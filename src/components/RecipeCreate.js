@@ -28,7 +28,7 @@ const RecipeCreate = () => {
     description: "",
     category: "",
     ingredients: [],
-    steps: "",
+    directions: "",
   });
 
   const handleChange = (e) => {
@@ -37,13 +37,11 @@ const RecipeCreate = () => {
 
   const handleSelectCategory = (e) => {
     setNewRecipe({ ...newRecipe, category: e.value });
-    console.log(newRecipe);
   };
 
   const handleSelectIngredients = (values) => {
-    const ingredientId = values.map((value) => value.value)
+    const ingredientId = values.map((value) => value.value);
     setNewRecipe({ ...newRecipe, ingredients: ingredientId });
-    console.log(ingredientId);
   };
 
   const navigate = useNavigate();
@@ -123,12 +121,14 @@ const RecipeCreate = () => {
           <label class="form-label m-3">Instructions</label>
           <div class="form-group">
             <textarea
+              name="directions"
               class="form-control"
               id="exampleFormControlTextarea1"
               rows="7"
+              onChange={handleChange}
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-dark m-3" onClick={handleSubmit}>
+          <button class="btn btn-dark m-3" onClick={handleSubmit}>
             Create Recipe
           </button>
         </div>

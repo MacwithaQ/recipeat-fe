@@ -7,6 +7,7 @@ import { useState } from "react";
 import RecipeList from "./components/RecipeList";
 import RecipeCreate from "./components/RecipeCreate";
 import IngredientsList from "./components/IngredientsList";
+import RecipeDetail from "./components/RecipeDetail";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -32,6 +33,7 @@ function App() {
           }
         />
         <Route path="/recipecreate" element={<RecipeCreate />} />
+        <Route path="/recipes/:recipeId" element={<RecipeDetail />} />
       </Routes>
     </div>
   );

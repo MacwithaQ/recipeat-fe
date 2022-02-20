@@ -1,11 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {
-  Nav,
-  Navbar,
-  Form,
-  FormControl,
-  Container,
-} from "react-bootstrap";
+import { Nav, Navbar, Form, FormControl, Container } from "react-bootstrap";
 import burgerIcon from "../media/BurgerIcon.png";
 
 function NavBar({ setQuery }) {
@@ -62,9 +56,6 @@ function NavBar({ setQuery }) {
               aria-label="Search"
               onChange={handleQuery}
             />
-            <button type="button" class="btn btn-dark">
-              Search
-            </button>
           </Form>
         </Navbar.Collapse>
       </Container>

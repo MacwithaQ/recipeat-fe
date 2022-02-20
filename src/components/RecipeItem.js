@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 
 const RecipeItem = ({ recipe }) => {
-
   return (
     <li>
-      <Link class="card" to="">
+      <Link class="card" to={`/recipes/${recipe._id}`}>
         <img src={recipe.image} class="card__image" alt="" />
         <div class="card__overlay">
           <div class="card__header">
