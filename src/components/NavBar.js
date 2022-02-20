@@ -46,6 +46,12 @@ function NavBar({ setQuery }) {
             >
               Recipes
             </NavLink>
+            <NavLink
+              className="link-dark text-decoration-none text-reset m-2"
+              to="/ingredients"
+            >
+              Ingredients
+            </NavLink>
           </Nav>
           <Form className="d-flex">
             <FormControl

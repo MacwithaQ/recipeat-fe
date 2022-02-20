@@ -1,10 +1,59 @@
 import categoriesStore from "../stores/categoriesStore";
+import ingredientsStore from "../stores/ingredientsStore";
+import recipesStore from "../stores/recipesStore";
 import { observer } from "mobx-react";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const RecipeCreate = () => {
-  const categoryOptions = categoriesStore.categories.map((category) => (
-    <option>{category.name}</option>
-  ));
+  const categoryOptions = categoriesStore.categories.map((category) => ({
+    value: category._id,
+    label: category.name,
+  }));
+
+  // const categoryOptions = categoriesStore.categories.map((category) => (
+  //   <option value={category._id}>{category.name}</option>
+  // ));
+
+  const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => ({
+    value: ingredient._id,
+    label: ingredient.name,
+  }));
+
+  const [newRecipe, setNewRecipe] = useState({
+    name: "",
+    image: "",
+    description: "",
+    category: "",
+    ingredients: [],
+    steps: "",
+  });
+
+  const handleChange = (e) => {
+    setNewRecipe({ ...newRecipe, [e.target.name]: e.target.value });
+  };
+
+  const handleSelectCategory = (e) => {
+    setNewRecipe({ ...newRecipe, category: e.value });
+    console.log(newRecipe);
+  };
+
+  const handleSelectIngredients = (values) => {
+    const ingredientId = values.map((value) => value.value)
+    setNewRecipe({ ...newRecipe, ingredients: ingredientId });
+    console.log(ingredientId);
+  };
+
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    recipesStore.addRecipe(newRecipe);
+    navigate("/recipes");
+  };
+
+  const animatedComponents = makeAnimated();
 
   return (
     <div>
@@ -17,13 +66,22 @@ const RecipeCreate = () => {
             name="name"
             placeholder="Enter recipe name"
             aria-label=".form-control-lg example"
+            required
+            onChange={handleChange}
           />
+
           <label class="form-label m-3">Category</label>
           <div class="form-group">
-            <select class="form-control" id="exampleFormControlSelect1">
-              {categoryOptions}
-            </select>
+            <Select
+              name="category"
+              onChange={handleSelectCategory}
+              class="form-control"
+              id="exampleFormControlSelect1"
+              options={categoryOptions}
+              components={animatedComponents}
+            />
           </div>
+
           <label class="form-label m-3">Description</label>
           <input
             class="form-control form-control-lg"
@@ -31,7 +89,10 @@ const RecipeCreate = () => {
             name="description"
             placeholder="Enter recipe description"
             aria-label=".form-control-lg example"
+            required
+            onChange={handleChange}
           />
+
           <label class="form-label m-3">Image URL</label>
           <input
             class="form-control form-control-lg"
@@ -39,14 +100,26 @@ const RecipeCreate = () => {
             name="image"
             placeholder="Enter image URL"
             aria-label=".form-control-lg example"
+            required
+            onChange={handleChange}
           />
+
           <label class="form-label m-3">Ingredients</label>
-          <input
-            class="form-control form-control-lg"
-            type="text"
-            placeholder="Enter recipe ingredients"
-            aria-label=".form-control-lg example"
-          />
+          <div class="form-group">
+            {/* <select name="ingredients" onChange={handleChange} class="form-control" id="exampleFormControlSelect1" multiple>
+              {ingredientOptions}
+            </select> */}
+            <Select
+              name="ingredients"
+              class="form-control"
+              id="exampleFormControlSelect1"
+              options={ingredientOptions}
+              isMulti
+              components={animatedComponents}
+              onChange={handleSelectIngredients}
+            />
+          </div>
+
           <label class="form-label m-3">Instructions</label>
           <div class="form-group">
             <textarea
@@ -55,7 +128,7 @@ const RecipeCreate = () => {
               rows="7"
             ></textarea>
           </div>
-          <button type="submit" class="btn btn-dark m-3">
+          <button type="submit" class="btn btn-dark m-3" onClick={handleSubmit}>
             Create Recipe
           </button>
         </div>

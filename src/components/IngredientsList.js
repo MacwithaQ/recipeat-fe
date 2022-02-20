@@ -1,35 +1,37 @@
-import React, { useState } from "react";
-import CategoryItem from "./CategoryItem";
-import categoriesStore from ".././stores/categoriesStore";
+import ingredientsStore from "../stores/ingredientsStore";
 import { observer } from "mobx-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import IngredientItem from "./IngredientsItem";
 
-function CategoriesList({ query }) {
+const IngredientList = ({ query }) => {
+
+  const ingredient = ingredientsStore.ingredients
+    .filter((ingredient) =>
+      ingredient.name.toLowerCase().includes(query.toLowerCase())
+    )
+    .map((ingredient) => (
+      <IngredientItem key={ingredient.id} ingredient={ingredient} />
+    ));
 
   const [create, setCreate] = useState(false);
-  const [newcategory, setnewCategory] = useState({
+  const [newIngredient, setNewIngredient] = useState({
     name: "",
     image: "",
     description: "",
   });
 
-  const categoryList = categoriesStore.categories
-    .filter((category) =>
-      category.name.toLowerCase().includes(query.toLowerCase())
-    )
-    .map((category) => <CategoryItem category={category} />);
-
   const handleChange = (e) => {
-    setnewCategory({ ...newcategory, [e.target.name]: e.target.value });
+    setNewIngredient({ ...newIngredient, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    categoriesStore.createCategory(newcategory);
+    ingredientsStore.addIngredient(newIngredient);
     setCreate(!create);
   };
-
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = (event) => {
+    event.preventDefault();
     setCreate(!create);
   };
 
@@ -37,7 +39,7 @@ function CategoriesList({ query }) {
     <div>
       <div className="controls">
         <button type="button" class="btn btn-dark" onClick={handleClick}>
-          Create Category
+          Add Ingredient
         </button>
       </div>
       {create && (
@@ -51,7 +53,7 @@ function CategoriesList({ query }) {
                 class="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
-                placeholder="Enter category name"
+                placeholder="Enter ingredient name"
                 onChange={handleChange}
               />
             </div>
@@ -89,9 +91,10 @@ function CategoriesList({ query }) {
         </div>
       )}
       <div>
-        <ul class="cards">{categoryList}</ul>
       </div>
+      <ul className="cards">{ingredient}</ul>
     </div>
   );
-}
-export default observer(CategoriesList);
+};
+
+export default observer(IngredientList);
