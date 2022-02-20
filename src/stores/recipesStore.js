@@ -22,6 +22,8 @@ class RecipesStore {
     try {
       const res = await instance.post("api/recipes", recipe)
       this.recipes = [...this.recipes, res.data]
+      // console.log(this.recipes)
+      console.log(res.data)
     } catch (error) {
       console.log(error)
     }

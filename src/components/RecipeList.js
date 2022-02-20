@@ -6,13 +6,7 @@ import { Link, useParams } from "react-router-dom";
 // import recipes from "../recipeData";
 
 const RecipeList = ({ query }) => {
-  const [create, setCreate] = useState({
-    name: "",
-    image: "",
-    description: "",
-    category: "",
-  });
-
+  
   const { categoryId } = useParams();
 
   const recipe = recipesStore.recipes
@@ -20,19 +14,9 @@ const RecipeList = ({ query }) => {
     .filter((recipe) => recipe.name.toLowerCase().includes(query.toLowerCase()))
     .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
 
-  // const handleChange = (e) => {
-  //   setCreate({ ...recipes, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   recipes.createRecipe(recipe);
-  //   setCreate(!create);
-  // };
 
   const handleClick = (event) => {
     event.preventDefault();
-    setCreate(!create);
   };
 
   return (
