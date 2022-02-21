@@ -33,7 +33,13 @@
 }
 
 .tester {
-  background-color: #10d452;
+  justify-content: center;
+  text-align: center;
+  display: grid;
+}
+
+.filter {
+  width: 300px;
 }
 
 .createForm {

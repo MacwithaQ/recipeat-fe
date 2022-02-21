@@ -86,14 +86,19 @@ const RecipeList = ({ query }) => {
             Create Recipe
           </Link>
         </button>
-        <div>
-          <Select
-            options={ingredientOptions}
-            isMulti
-            components={animatedComponents}
-            onChange={handleSelect}
-            defaultValue={-1}
-          />
+      </div>
+      <div className="tester">
+        <div className="filter">
+          <h4>Filter by Ingredients</h4>
+          <div>
+            <Select
+              options={ingredientOptions}
+              isMulti
+              components={animatedComponents}
+              onChange={handleSelect}
+              defaultValue={-1}
+            />
+          </div>
         </div>
       </div>
       <ul className="cards">{recipe}</ul>
