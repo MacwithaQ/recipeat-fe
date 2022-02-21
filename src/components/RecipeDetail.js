@@ -27,6 +27,7 @@ const RecipeDetail = () => {
     return list.replace(/,/g, ", ");
   }
 
+
   const ingredientPrint = ingredientListMaker(ingredientUsedNames);
 
   return (

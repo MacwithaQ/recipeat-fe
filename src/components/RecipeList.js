@@ -2,23 +2,20 @@ import recipesStore from "../stores/recipesStore";
 import { observer } from "mobx-react";
 import RecipeItem from "./RecipeItem";
 import { Link, useParams } from "react-router-dom";
-import Select from 'react-select'
+import Select from "react-select";
 import ingredientsStore from "../stores/ingredientsStore";
 import makeAnimated from "react-select/animated";
 import { useState } from "react";
 
-
 const RecipeList = ({ query }) => {
-  
   const { categoryId } = useParams();
 
   const [selectedIngredients, setSelectedIngredients] = useState({
-    _id: "",
-    name: ""
-  })
+    _id: [],
+  });
 
   // fecth ingredients form store
-  const ingredients = ingredientsStore.ingredients
+  const ingredients = ingredientsStore.ingredients;
 
   // iterate ingredient and map them to value and option
   const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => ({
@@ -28,10 +25,13 @@ const RecipeList = ({ query }) => {
 
   // take ingredient id from react-select
   const handleSelect = (value) => {
-    const ingredientId = value.map((value) => value.value)
-    setSelectedIngredients({...selectedIngredients, ingredients: ingredientId})
-  }
-  console.log(selectedIngredients)
+    const ingredientId = value.map((value) => value.value);
+    setSelectedIngredients({
+      ...selectedIngredients,
+      _id: ingredientId,
+    });
+  };
+  console.log(selectedIngredients);
 
   const recipeMapping = () => {
     if (!categoryId) {
@@ -39,20 +39,25 @@ const RecipeList = ({ query }) => {
         .filter((recipe) =>
           recipe.name.toLowerCase().includes(query.toLowerCase())
         )
+        .filter((recipe) =>
+          selectedIngredients.some((ingredient) =>
+          recipe.ingredients.includes(ingredient)
+          )
+        )
         .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
     } else {
       return recipesStore.recipes
         .filter((recipe) => recipe.category === categoryId)
         .filter((recipe) =>
           recipe.name.toLowerCase().includes(query.toLowerCase())
-        ).filter((recipe) => recipe.ingredient === selectedIngredients._id)
+        )
         .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
     }
   };
+  console.log(recipesStore.recipes);
 
   const recipe = recipeMapping();
   const animatedComponents = makeAnimated();
-
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -60,14 +65,6 @@ const RecipeList = ({ query }) => {
 
   return (
     <div>
-      <div>
-        <Select 
-        options={ingredientOptions}
-        isMulti
-        components={animatedComponents}
-        onChange={handleSelect}
-        />
-      </div>
       <div className="controls">
         <button type="button" class="btn btn-dark" onClick={handleClick}>
           <Link
@@ -77,6 +74,14 @@ const RecipeList = ({ query }) => {
             Create Recipe
           </Link>
         </button>
+        <div>
+          <Select
+            options={ingredientOptions}
+            isMulti
+            components={animatedComponents}
+            onChange={handleSelect}
+          />
+        </div>
       </div>
       <ul className="cards">{recipe}</ul>
     </div>
