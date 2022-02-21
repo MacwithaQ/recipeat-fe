@@ -10,12 +10,7 @@ import { useState } from "react";
 const RecipeList = ({ query }) => {
   const { categoryId } = useParams();
 
-  const [selectedIngredients, setSelectedIngredients] = useState({
-    _id: [],
-  });
-
-  // fecth ingredients form store
-  const ingredients = ingredientsStore.ingredients;
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
   // iterate ingredient and map them to value and option
   const ingredientOptions = ingredientsStore.ingredients.map((ingredient) => ({
@@ -24,37 +19,54 @@ const RecipeList = ({ query }) => {
   }));
 
   // take ingredient id from react-select
-  const handleSelect = (value) => {
-    const ingredientId = value.map((value) => value.value);
-    setSelectedIngredients({
-      ...selectedIngredients,
-      _id: ingredientId,
-    });
+  const handleSelect = (options) => {
+    const ingredients = options.map((option) => option.value);
+    setSelectedIngredients(ingredients);
   };
-  console.log(selectedIngredients);
 
   const recipeMapping = () => {
-    if (!categoryId) {
-      return recipesStore.recipes
-        .filter((recipe) =>
-          recipe.name.toLowerCase().includes(query.toLowerCase())
-        )
-        .filter((recipe) =>
-          selectedIngredients.some((ingredient) =>
-          recipe.ingredients.includes(ingredient)
+    if (selectedIngredients.length === 0) {
+      if (!categoryId) {
+        return recipesStore.recipes
+          .filter((recipe) =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
           )
-        )
-        .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+          .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+      } else {
+        return recipesStore.recipes
+          .filter((recipe) => recipe.category === categoryId)
+          .filter((recipe) =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
+          )
+          .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+      }
     } else {
-      return recipesStore.recipes
-        .filter((recipe) => recipe.category === categoryId)
-        .filter((recipe) =>
-          recipe.name.toLowerCase().includes(query.toLowerCase())
-        )
-        .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+      if (!categoryId) {
+        return recipesStore.recipes
+          .filter((recipe) =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
+          )
+          .filter((recipe) =>
+            selectedIngredients.some((ingredient) =>
+              recipe.ingredients.includes(ingredient)
+            )
+          )
+          .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+      } else {
+        return recipesStore.recipes
+          .filter((recipe) => recipe.category === categoryId)
+          .filter((recipe) =>
+            recipe.name.toLowerCase().includes(query.toLowerCase())
+          )
+          .filter((recipe) =>
+            selectedIngredients.some((ingredient) =>
+              recipe.ingredients.includes(ingredient)
+            )
+          )
+          .map((recipe) => <RecipeItem key={recipe.id} recipe={recipe} />);
+      }
     }
   };
-  console.log(recipesStore.recipes);
 
   const recipe = recipeMapping();
   const animatedComponents = makeAnimated();
@@ -80,6 +92,7 @@ const RecipeList = ({ query }) => {
             isMulti
             components={animatedComponents}
             onChange={handleSelect}
+            defaultValue={-1}
           />
         </div>
       </div>
