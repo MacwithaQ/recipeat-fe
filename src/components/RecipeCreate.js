@@ -104,9 +104,6 @@ const RecipeCreate = () => {
 
           <label class="form-label m-3">Ingredients</label>
           <div class="form-group">
-            {/* <select name="ingredients" onChange={handleChange} class="form-control" id="exampleFormControlSelect1" multiple>
-              {ingredientOptions}
-            </select> */}
             <Select
               name="ingredients"
               class="form-control"
