@@ -32,6 +32,10 @@
   justify-content: center;
 }
 
+.tester {
+  background-color: #10d452;
+}
+
 .createForm {
   margin: 0;
   animation: 0.5s ease-out 0s 1 opacityIn;
@@ -144,7 +148,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 0;
   border-radius: calc(var(--curve) * 1px);
   background-color: var(--surface-color);
   transform: translateY(100%);
